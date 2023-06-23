@@ -5,7 +5,7 @@ static int IstwMin;
 static int IstwMax;
 static unsigned int Zustand[2];
 
-void InitializeAllGlobals() {
+void resetState() {
     AnsprAufO = 0;
     AnsprAufV = 0;
     AnsprBand = 0;
