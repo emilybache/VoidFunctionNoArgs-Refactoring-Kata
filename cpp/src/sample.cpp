@@ -1,6 +1,4 @@
 #include "sample.h"
-#include "globals.h"
-#include "constants.h"
 
 // private static variables
 static int IstwMin;
@@ -27,6 +25,7 @@ void InitializeAllGlobals() {
     StellIstRev = 0;
     wirkFall = 0;
 
+    // private static variables
     IstwMin = 0;
     IstwMax = 0;
     Zustand[0] = 0;
