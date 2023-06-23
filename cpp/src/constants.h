@@ -4,18 +4,18 @@
 #define VOIDFUNCTIONNOARGS_CONSTANTS_H
 
 // enums
-extern int C_IBS_NOK;
-extern int C_IBS_OK;
+extern unsigned int C_IBS_NOK;
+extern unsigned int C_IBS_OK;
 
-extern int N_VALVE_CROSS;
-extern int N_VALVE_DIAG;
-extern int N_MANUAL;
-extern int N_AUTOMATIK;
+extern unsigned int N_VALVE_CROSS;
+extern unsigned int N_VALVE_DIAG;
+extern unsigned int N_MANUAL;
+extern unsigned int N_AUTOMATIK;
 
-extern int STATE_WITHIN_DEADZONE;
-extern int STATE_OUTSIDE_DEADZONE;
-extern int STATE_MOVE_UP;
-extern int STATE_MOVE_DOWN;
+extern unsigned int STATE_WITHIN_DEADZONE;
+extern unsigned int STATE_OUTSIDE_DEADZONE;
+extern unsigned int STATE_MOVE_UP;
+extern unsigned int STATE_MOVE_DOWN;
 
 // bit masks
 #define ZU_O 1

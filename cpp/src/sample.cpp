@@ -5,6 +5,7 @@ static int IstwMin;
 static int IstwMax;
 static unsigned int Zustand[2];
 
+
 void resetState() {
     AnsprAufO = 0;
     AnsprAufV = 0;
@@ -33,6 +34,7 @@ void resetState() {
 }
 
 void theFunctionToTest() {
+
     int ZwspAufO;
     int ZwspZuV;
     unsigned int zw;

@@ -35,26 +35,27 @@ TEST_CASE ("theFunctionToTest") {
     SECTION("all defaults") {
         theFunctionToTest();
         ApprovalTests::Approvals::verify(printGlobals());
-    }SECTION("all combinations") {
+    }
+    SECTION("all combinations") {
 
-        std::vector<int> AnsprAufOs{0};
-        std::vector<int> AnsprAufVs{0};
-        std::vector<int> AnsprBands{0};
-        std::vector<int> AnsprHysts{0};
-        std::vector<int> AnsprZuOs{0};
-        std::vector<int> AnsprZuVs{0};
-        std::vector<unsigned int> AutoIbsOks{0};
-        std::vector<unsigned int> BinSteuers{0};
-        std::vector<int> Nerker1s{0};
-        std::vector<unsigned int> NImpulss{0};
+        std::vector<int> AnsprAufOs{0, 1};
+        std::vector<int> AnsprAufVs{0, 1};
+        std::vector<int> AnsprBands{0, 1};
+        std::vector<int> AnsprHysts{0, 1};
+        std::vector<int> AnsprZuOs{0, 1};
+        std::vector<int> AnsprZuVs{0, 1};
+        std::vector<unsigned int> AutoIbsOks{0, C_IBS_OK};
+        std::vector<unsigned int> BinSteuers{0, 16};
+        std::vector<int> Nerker1s{0, 4};
+        std::vector<unsigned int> NImpulss{0, 63};
         std::vector<unsigned int> NRegFkts{0};
-        std::vector<int> RegDiffs{0};
-        std::vector<int> RegDiffSchs{0};
-        std::vector<unsigned int> RegModes{0};
-        std::vector<int> SollwertRevs{0};
-        std::vector<int> StellFwds{0};
-        std::vector<int> StellIstRevs{0};
-        std::vector<int> wirkFalls{0};
+        std::vector<int> RegDiffs{0, -100, -37, 37, 100};
+        std::vector<int> RegDiffSchs{0, 5, 100};
+        std::vector<unsigned int> RegModes{0, N_AUTOMATIK, N_VALVE_DIAG};
+        std::vector<int> SollwertRevs{0, 50};
+        std::vector<int> StellFwds{0, 13};
+        std::vector<int> StellIstRevs{0, 100};
+        std::vector<int> wirkFalls{0, 1};
         ApprovalTests::CombinationApprovals::verifyAllCombinations(
                 "theFunctionToTest all combinations of globals",
                 [&](
@@ -96,11 +97,11 @@ TEST_CASE ("theFunctionToTest") {
                     StellIstRev = stellIstRev;
                     WirkFall = wirkFall;
 
-                    std::string before = printGlobals();
+                    std::string before = "\n" + printGlobals();
 
                     theFunctionToTest();
 
-                    return before + "\n->\n" + printGlobals();
+                    return before + "->\n" + printGlobals();
                 },
                 AnsprAufOs,
                 AnsprAufVs,
