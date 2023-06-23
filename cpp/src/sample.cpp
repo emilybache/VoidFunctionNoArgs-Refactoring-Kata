@@ -2,9 +2,36 @@
 #include "globals.h"
 #include "constants.h"
 
-extern int IstwMin;
-extern int IstwMax;
-extern unsigned int Zustand[2];
+// private static variables
+static int IstwMin;
+static int IstwMax;
+static unsigned int Zustand[2];
+
+void InitializeAllGlobals() {
+    AnsprAufO = 0;
+    AnsprAufV = 0;
+    AnsprBand = 0;
+    AnsprHyst = 0;
+    AnsprZuO = 0;
+    AnsprZuV = 0;
+    AutoIbsOk = 0;
+    BinSteuer = 0;
+    Nerker1 = 0;
+    NImpuls = 0;
+    NRegFkt = 0;
+    RegDiff = 0;
+    RegDiffSch = 0;
+    RegMode = 0;
+    SollwertRev = 0;
+    StellFwd = 0;
+    StellIstRev = 0;
+    wirkFall = 0;
+
+    IstwMin = 0;
+    IstwMax = 0;
+    Zustand[0] = 0;
+    Zustand[1] = 0;
+}
 
 void theFunctionToTest() {
     int ZwspAufO;
@@ -27,10 +54,12 @@ void theFunctionToTest() {
             ZwspAufO = AnsprAufO + AnsprHyst;
             ZwspZuV = AnsprZuO - AnsprHyst;
 
-            if (((RegDiff < AnsprZuO) && (Zustand[1] != STATE_MOVE_UP) && ((SollwertRev - IstwMin) > AnsprZuO))
-                ||
-                ((RegDiff > AnsprAufO) && (Zustand[1] != STATE_MOVE_DOWN) && ((SollwertRev - IstwMax) > AnsprAufO)))
-            {
+            if (    ((RegDiff < AnsprZuO) && (Zustand[1] != STATE_MOVE_UP) &&
+                    ((SollwertRev - IstwMin) > AnsprZuO))
+                    ||
+                    ((RegDiff > AnsprAufO) && (Zustand[1] != STATE_MOVE_DOWN) &&
+                    ((SollwertRev - IstwMax) > AnsprAufO))
+                ) {
                 ZwspAufO = AnsprAufO + AnsprBand;
                 ZwspZuV = AnsprZuO - AnsprBand;
             }
@@ -39,18 +68,15 @@ void theFunctionToTest() {
         if ((Nerker1 & STROM_GRENZ) != 0) {
             if (wirkFall == 0) {
                 ZwspAufO = ZwspAufO + 37;
-            }
-            else {
+            } else {
                 ZwspZuV = ZwspZuV - 37;
             }
         }
 
-        if (AnsprZuV > ZwspZuV)
-        {
+        if (AnsprZuV > ZwspZuV) {
             AnsprZuV = ZwspZuV;
         }
-        if (AnsprAufV > ZwspAufO)
-        {
+        if (AnsprAufV > ZwspAufO) {
             AnsprAufV = ZwspAufO;
         }
 
@@ -58,29 +84,51 @@ void theFunctionToTest() {
         int PraeAufWirk = 0;
         int PraeZuWirk = 0;
 
-        if ((RegDiff >= ZwspZuV) && (RegDiff <= ZwspAufO))
-        {
+        if ((RegDiff >= ZwspZuV) && (RegDiff <= ZwspAufO)) {
             NImpuls |= TOTZONE;
-        }
-        else {
+        } else {
             NImpuls &= ~TOTZONE;
             PraeAufWirk = AnsprAufV;
             PraeZuWirk = AnsprZuV;
         }
-        if (RegDiffSch > ZwspAufO)
-        {
-            if (RegDiff > ZwspAufO) {
-                if (RegDiffSch > AnsprAufV) {
-                    StellFwd |= AUF_V;
-                }
-                else {
-                    StellFwd |= AUF_O;
-                }
-            }
+        if ((NImpuls & TY_GRENZ_1) != 0) {
+            PraeAufWirk = PRAE_WIRK_1;
+            PraeZuWirk = -PRAE_WIRK_1;
+        }
+        if ((NImpuls & TY_GRENZ_2) != 0) {
+            PraeAufWirk = PRAE_WIRK_2;
+            PraeZuWirk = -PRAE_WIRK_2;
         }
 
+        if (AnsprAufV > PraeAufWirk) {
+            PraeAufWirk = AnsprAufV;
+        }
+        if (AnsprZuV < PraeZuWirk) {
+            PraeZuWirk = AnsprZuV;
+        }
+
+        if (RegDiff < PraeZuWirk) {
+            StellFwd |= ZU_V;
+        } else {
+            if (RegDiff > PraeAufWirk) {
+                StellFwd |= AUF_V;
+            } else {
+                if (RegDiffSch > ZwspAufO) {
+                    if (RegDiff > ZwspAufO) {
+                        if (RegDiffSch > AnsprAufV) {
+                            StellFwd |= AUF_V;
+                        } else {
+                            StellFwd |= AUF_O;
+                        }
+                    }
+                }
+            }
+
+        }
+
+
         if (PraeAufWirk == AnsprAufV || PraeZuWirk == AnsprZuV) {
-            if ((NImpuls & TOTZONE) != 0){
+            if ((NImpuls & TOTZONE) != 0) {
                 if (StellIstRev < IstwMin) {
                     IstwMin = StellIstRev;
                 }
@@ -105,8 +153,7 @@ void theFunctionToTest() {
             zw = STATE_MOVE_UP;
         }
 
-        if (zw != Zustand[0])
-        {
+        if (zw != Zustand[0]) {
             Zustand[1] = Zustand[0];
             Zustand[0] = zw;
         }

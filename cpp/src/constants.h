@@ -27,9 +27,13 @@ int STATE_MOVE_DOWN = 4;
 #define TOTZONE 1
 #define TOTZONE_ALT 2
 #define STROM_GRENZ 4
+#define TY_GRENZ_1 8
+#define TY_GRENZ_2 16
 
 // Constants
 #define PERCENT_MIN 34
 #define PERCENT_MAX 89
+#define PRAE_WIRK_1 42
+#define PRAE_WIRK_2 56
 
 #endif //VOIDFUNCTIONNOARGS_CONSTANTS_H
