@@ -16,5 +16,5 @@ unsigned int RegMode = 0;
 int SollwertRev = 0;
 int StellFwd = 0;
 int StellIstRev = 0;
-int wirkFall = 0;
+int WirkFall = 0;
 

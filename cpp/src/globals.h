@@ -20,6 +20,6 @@ extern unsigned int RegMode;
 extern int SollwertRev;
 extern int StellFwd;
 extern int StellIstRev;
-extern int wirkFall;
+extern int WirkFall;
 
 #endif //VOIDFUNCTIONNOARGS_GLOBALS_H

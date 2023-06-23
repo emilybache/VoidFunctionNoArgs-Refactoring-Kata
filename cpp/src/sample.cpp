@@ -23,7 +23,7 @@ void resetState() {
     SollwertRev = 0;
     StellFwd = 0;
     StellIstRev = 0;
-    wirkFall = 0;
+    WirkFall = 0;
 
     // private static variables
     IstwMin = 0;
@@ -65,7 +65,7 @@ void theFunctionToTest() {
         }
 
         if ((Nerker1 & STROM_GRENZ) != 0) {
-            if (wirkFall == 0) {
+            if (WirkFall == 0) {
                 ZwspAufO = ZwspAufO + 37;
             } else {
                 ZwspZuV = ZwspZuV - 37;
