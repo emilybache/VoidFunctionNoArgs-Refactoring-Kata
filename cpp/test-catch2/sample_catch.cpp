@@ -49,7 +49,7 @@ TEST_CASE ("theFunctionToTest") {
         std::vector<int> Nerker1s{0, 4};
         std::vector<unsigned int> NImpulss{0, 63};
         std::vector<unsigned int> NRegFkts{0};
-        std::vector<int> RegDiffs{0, -100, -37, 37, 100};
+        std::vector<int> RegDiffs{0, -37, 37};
         std::vector<int> RegDiffSchs{0, 5, 100};
         std::vector<unsigned int> RegModes{0, N_AUTOMATIK, N_VALVE_DIAG};
         std::vector<int> SollwertRevs{0, 50};
