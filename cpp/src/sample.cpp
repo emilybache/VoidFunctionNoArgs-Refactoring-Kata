@@ -26,19 +26,19 @@ void theFunctionToTest() {
             ZwspAufO = AnsprAufO + AnsprHyst;
             ZwspZuV = AnsprZuO - AnsprHyst;
 
-            if (((RegDiff < AnsprZuO) && (Zustand[1] != STATE_MOVE_UP) &&
-                 ((SollwertRev - IstwMin) > AnsprZuO))
-                ||
-                ((RegDiff > AnsprAufO) && (Zustand[1] != STATE_MOVE_DOWN) &&
-                 ((SollwertRev - IstwMax) > AnsprAufO))
-                    ) {
+            if (    ((RegDiff < AnsprZuO) && (Zustand[1] != STATE_MOVE_UP) &&
+                    ((SollwertRev - IstwMin) > AnsprZuO))
+                    ||
+                    ((RegDiff > AnsprAufO) && (Zustand[1] != STATE_MOVE_DOWN) &&
+                    ((SollwertRev - IstwMax) > AnsprAufO))
+                ) {
                 ZwspAufO = AnsprAufO + AnsprBand;
                 ZwspZuV = AnsprZuO - AnsprBand;
             }
         }
 
         if ((Nerker1 & STROM_GRENZ) != 0) {
-            if (wirkFall == 0) {
+            if (WirkFall == 0) {
                 ZwspAufO = ZwspAufO + 37;
             } else {
                 ZwspZuV = ZwspZuV - 37;

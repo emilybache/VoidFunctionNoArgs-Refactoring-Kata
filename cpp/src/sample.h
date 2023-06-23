@@ -5,6 +5,5 @@
 #include "constants.h"
 
 void theFunctionToTest();
-void InitializeAllGlobals();
 
 #endif //SAMPLE_H
