@@ -5,33 +5,6 @@ static int IstwMin;
 static int IstwMax;
 static unsigned int Zustand[2];
 
-void InitializeAllGlobals() {
-    AnsprAufO = 0;
-    AnsprAufV = 0;
-    AnsprBand = 0;
-    AnsprHyst = 0;
-    AnsprZuO = 0;
-    AnsprZuV = 0;
-    AutoIbsOk = 0;
-    BinSteuer = 0;
-    Nerker1 = 0;
-    NImpuls = 0;
-    NRegFkt = 0;
-    RegDiff = 0;
-    RegDiffSch = 0;
-    RegMode = 0;
-    SollwertRev = 0;
-    StellFwd = 0;
-    StellIstRev = 0;
-    wirkFall = 0;
-
-    // private static variables
-    IstwMin = 0;
-    IstwMax = 0;
-    Zustand[0] = 0;
-    Zustand[1] = 0;
-}
-
 void theFunctionToTest() {
     int ZwspAufO;
     int ZwspZuV;
@@ -53,12 +26,12 @@ void theFunctionToTest() {
             ZwspAufO = AnsprAufO + AnsprHyst;
             ZwspZuV = AnsprZuO - AnsprHyst;
 
-            if (    ((RegDiff < AnsprZuO) && (Zustand[1] != STATE_MOVE_UP) &&
-                    ((SollwertRev - IstwMin) > AnsprZuO))
-                    ||
-                    ((RegDiff > AnsprAufO) && (Zustand[1] != STATE_MOVE_DOWN) &&
-                    ((SollwertRev - IstwMax) > AnsprAufO))
-                ) {
+            if (((RegDiff < AnsprZuO) && (Zustand[1] != STATE_MOVE_UP) &&
+                 ((SollwertRev - IstwMin) > AnsprZuO))
+                ||
+                ((RegDiff > AnsprAufO) && (Zustand[1] != STATE_MOVE_DOWN) &&
+                 ((SollwertRev - IstwMax) > AnsprAufO))
+                    ) {
                 ZwspAufO = AnsprAufO + AnsprBand;
                 ZwspZuV = AnsprZuO - AnsprBand;
             }
