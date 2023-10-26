@@ -96,7 +96,7 @@ public class Sample {
                             if (RegDiffSch > AnsprAufV) {
                                 StellFwd |= AUF_V;
                             } else {
-                                StellFwd |= AUF_O;
+                                StellFwd |= AUF_O; // this is not covered!
                             }
                         }
                     }
